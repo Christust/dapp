@@ -2,8 +2,12 @@
 
 {% block title %}Crear chef{% endblock title %}
 {% block body %}
+{% if not error %}
 <form method="post">
   {% csrf_token %} {{ chef_form.as_p }}
   <button type="submit">Enviar</button>
 </form>
+{% else %}
+<h1>{{ error }}</h1>
+{% endif %}
 {% endblock body %}

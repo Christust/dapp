@@ -41,7 +41,7 @@ BASE_APPS = [
 
 LOCAL_APPS = ["apps.chefs", "apps.recipes"]
 
-THIRD_APPS = []
+THIRD_APPS = ["django_extensions"]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
