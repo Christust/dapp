@@ -17,7 +17,7 @@ def create_chef(request):
         chef_form = ChefForm(request.POST)
         if chef_form.is_valid():
             chef_form.save()
-            return redirect("index")
+            return redirect("chefs:index_chef")
     else:
         chef_form = ChefForm()
         context = {"chef_form": chef_form}
@@ -43,4 +43,4 @@ def edit_chef(request, pk):
 def delete_chef(request, pk):
     chef = Chef.objects.filter(id = pk).first()
     chef.delete()
-    return redirect("index_chef")
+    return redirect("chefs:index_chef")

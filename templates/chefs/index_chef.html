@@ -2,12 +2,39 @@
 
 {% block title %}Crear chef{% endblock title %}
 {% block body %}
+<a href="{% url 'chefs:create_chef' %}">Nuevo Chef</a>
 {% if chefs %}
-<ul>
-  {% for chef in chefs %}
-  <li>{{chef}}</li>
-  {% endfor %}
-</ul>
+<div class="d-flex justify-content-center">
+  <div class="card col-8 p-3">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for chef in chefs %}
+        <tr>
+          <td>{{chef.id}}</td>
+          <td>{{chef.name}}</td>
+          <td>{{chef.last_name}}</td>
+          <td>
+            <a href="{% url 'chefs:edit_chef' chef.id %}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a href="{% url 'chefs:delete_chef' chef.id %}">
+              <i class="fa-solid fa-trash-can"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% else %}
 <h1>No existen chefs</h1>
 {% endif %}
