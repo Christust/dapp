@@ -1,0 +1,32 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Document{% endblock title %}</title>
+    <script src="{% static 'icons/all.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% compress css %}
+      <link type="text/x-scss" href="{% static 'scss/index.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+    {% block extracss %}{% endblock extracss %}
+  </head>
+  <body>
+    {% block body %}
+    <div class="d-flex hv-100 justify-content-center align-items-center">
+      <div class="card col-6 p-3">
+        <form method="POST">
+          {% csrf_token %}
+          <label for="user" class="form-label">Username</label>
+          <input id="user" class="form-control" name="username" placeholder="Username"></input>
+          <label for="password" class="form-label">Password</label>
+          <input id="password" type="password" class="form-control" name="password" placeholder="Password"></input>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+    {% endblock body %}
+  </body>
+</html>
