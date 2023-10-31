@@ -4,15 +4,12 @@ from .forms import ChefForm
 
 
 # Create your views here.
-def Home(request):
-    return render(request, "chefs/index.html")
-
-def index_chef(request):
+def index(request):
     chefs = Chef.objects.all()
     context = {"chefs":chefs}
     return render(request, "chefs/index_chef.html", context)
 
-def create_chef(request):
+def create(request):
     if request.method == "POST":
         chef_form = ChefForm(request.POST)
         if chef_form.is_valid():
@@ -23,7 +20,7 @@ def create_chef(request):
         context = {"chef_form": chef_form}
     return render(request, "chefs/create_chef.html", context)
 
-def edit_chef(request, pk):
+def update(request, pk):
     chef = Chef.objects.filter(id = pk).first()
     chef_form = None
     error = None
@@ -40,7 +37,18 @@ def edit_chef(request, pk):
     context = {"chef_form": chef_form, "error": error}
     return render(request, "chefs/edit_chef.html", context)
 
-def delete_chef(request, pk):
+def show(request, pk):
+    chef = Chef.objects.filter(id = pk).first()
+    chef_form = None
+    error = None
+    if chef:
+        chef_form = ChefForm(instance=chef)
+    else:
+        error = "No existe el chef"
+    context = {"chef_form": chef_form, "error": error}
+    return render(request, "chefs/edit_chef.html", context)
+
+def delete(request, pk):
     chef = Chef.objects.filter(id = pk).first()
     chef.delete()
     return redirect("chefs:index_chef")
