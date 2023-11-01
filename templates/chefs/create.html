@@ -2,8 +2,22 @@
 
 {% block title %}Crear chef{% endblock title %}
 {% block body %}
-<form method="post">
-  {% csrf_token %} {{ chef_form.as_p }}
-  <button type="submit">Enviar</button>
-</form>
+<div class="card col-9 p-3">
+  <form method="post">
+    {% csrf_token %}
+    <div class="row form-group">
+      <div>
+        <label>{{form.name.label}}</label>
+      </div>
+      <div>{{form.name}}</div>
+    </div>
+    <div class="row form-group">
+      <div>
+        <label>{{form.last_name.label}}</label>
+      </div>
+      <div>{{form.last_name}}</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Actualizar</button>
+  </form>
+</div>
 {% endblock body %}

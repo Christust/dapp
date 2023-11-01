@@ -25,6 +25,7 @@
         </header>
         <main class="mainContent">
           {% block body %}
+          {{user.is_authenticated}}
           <a href="" >Chefs</a>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

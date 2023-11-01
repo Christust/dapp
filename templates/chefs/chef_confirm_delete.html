@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block title %}Eliminar chef{% endblock title %}
+{% block body %}
+{% if not error %}
+<div class="card col-9 p-3">
+  <form method="post">
+    {% csrf_token %} 
+    <div>
+        <h5>¿Seguro de que desea eliminar este chef?</h5>
+    </div>
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+  </form>
+</div>
+{% else %}
+<h1>{{ error }}</h1>
+{% endif %}
+{% endblock body %}
