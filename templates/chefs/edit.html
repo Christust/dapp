@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block title %}Crear chef{% endblock title %}
+{% block body %}
+{% if not error %}
+<div class="card col-9 p-3">
+  <form method="post">
+    {% csrf_token %} 
+    <div class="row form-group">
+      <div>
+        <label>{{chef_form.name.label}}</label>
+      </div>
+      <div>{{chef_form.name}}</div>
+    </div>
+    <div class="row form-group">
+      <div>
+        <label>{{chef_form.last_name.label}}</label>
+      </div>
+      <div>{{chef_form.last_name}}</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Actualizar</button>
+  </form>
+</div>
+{% else %}
+<h1>{{ error }}</h1>
+{% endif %}
+{% endblock body %}
