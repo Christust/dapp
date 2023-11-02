@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 
-{% block title %}Crear chef{% endblock title %}
+{% block title %}Crear receta{% endblock title %}
 {% block body %}
 <div class="card col-9 p-3">
   <form method="post">
@@ -13,9 +13,15 @@
     </div>
     <div class="row form-group">
       <div>
-        <label>{{form.last_name.label}}</label>
+        <label>{{form.description.label}}</label>
       </div>
-      <div>{{form.last_name}}</div>
+      <div>{{form.description}}</div>
+    </div>
+    <div class="row form-group">
+      <div>
+        <label>{{form.chef.label}}</label>
+      </div>
+      <div>{{form.chef}}</div>
     </div>
     <button class="btn btn-primary" type="submit">Crear</button>
   </form>

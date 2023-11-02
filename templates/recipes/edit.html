@@ -1,10 +1,10 @@
 {% extends "index.html" %}
-
 {% block title %}Crear chef{% endblock title %}
 {% block body %}
+{% if not error %}
 <div class="card col-9 p-3">
   <form method="post">
-    {% csrf_token %}
+    {% csrf_token %} 
     <div class="row form-group">
       <div>
         <label>{{form.name.label}}</label>
@@ -13,11 +13,20 @@
     </div>
     <div class="row form-group">
       <div>
-        <label>{{form.last_name.label}}</label>
+        <label>{{form.description.label}}</label>
       </div>
-      <div>{{form.last_name}}</div>
+      <div>{{form.description}}</div>
     </div>
-    <button class="btn btn-primary" type="submit">Crear</button>
+    <div class="row form-group">
+      <div>
+        <label>{{form.chef.label}}</label>
+      </div>
+      <div>{{form.chef}}</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Actualizar</button>
   </form>
 </div>
+{% else %}
+<h1>{{ error }}</h1>
+{% endif %}
 {% endblock body %}

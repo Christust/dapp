@@ -19,7 +19,7 @@
         <div class="sidebar__sidebarRouteContainer">
             <a
                 class="sidebar__sidebarRoute sidebar__sidebarRoute--button"
-                
+                href="{% url 'recipes:index' %}"
             >
                 <i class="fa-solid fa-pizza-slice me-3"></i>
                 <span>Recipes</span>
@@ -38,7 +38,7 @@
       ))} {% endcomment %}
       <div class="sidebar__sidebarRouteContainer">
         <a
-            href="{% url 'logout' %}"
+            href="{% url 'users:logout' %}"
           class="sidebar__sidebarRoute sidebar__sidebarRoute--button"
         >
           <i class="fa-solid fa-door-open me-3"></i>
