@@ -4,13 +4,16 @@
 {% block body %}
 <div class="d-flex justify-content-end align-items-center">
   <div class="col-12 text-end p-3">
+    <!-- Button trigger modal -->
+    <button onclick="openFormModal('{% url 'chefs:create' %}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#genericModal">
+      Launch demo modal
+    </button>
     <a class="btn btn-primary" href="{% url 'chefs:create' %}">Nuevo Chef</a>
   </div>
 </div>
 {% if chefs %}
 <div class="d-flex justify-content-center">
   <div class="col-12 p-3">
-    {{user}}
     <table class="table patientsHeadClass table-striped">
       <thead>
         <tr>
@@ -43,4 +46,15 @@
 {% else %}
 <h1>No existen chefs</h1>
 {% endif %}
+{% include "chefs/create_chef_modal.html" %}
 {% endblock body %}
+{% block extrajs %}
+<script type="text/javascript">
+  const $ = jQuery.noConflict();
+  function openFormModal(url){
+    $("#genericModal").load(url, function(){
+      $(this).modal("show");
+    });
+  }
+</script>
+{% endblock extrajs %}
