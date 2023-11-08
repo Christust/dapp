@@ -6,27 +6,50 @@ from .forms import ChefForm
 
 
 # Create your views here.
-class ListView(generic.ListView):
+class ListView(generic.View):
     template_name = "chefs/index.html"
     context_object_name = "chefs"
     model = Chef
+    form_class = ChefForm
     queryset = model.objects.all()
 
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = {"chefs": self.get_queryset(), "form": self.form_class}
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        form = self.form_class(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            return redirect("chefs:index")
+
+
 class UpdateView(generic.UpdateView):
-    template_name="chefs/edit.html"
-    model=Chef
-    form_class=ChefForm
-    success_url=reverse_lazy("chefs:index")
+    template_name = "chefs/edit_chef_modal.html"
+    model = Chef
+    form_class = ChefForm
+    success_url = reverse_lazy("chefs:index")
+
 
 class CreateView(generic.CreateView):
-    template_name="chefs/create.html"
-    model=Chef
-    form_class=ChefForm
-    success_url=reverse_lazy("chefs:index")
+    template_name = "chefs/create.html"
+    model = Chef
+    form_class = ChefForm
+    success_url = reverse_lazy("chefs:index")
+
 
 class DeleteView(generic.DeleteView):
-    model=Chef
-    success_url=reverse_lazy("chefs:index")
+    model = Chef
+    success_url = reverse_lazy("chefs:index")
+
 
 def create(request):
     if request.method == "POST":
