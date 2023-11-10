@@ -4,11 +4,7 @@
 {% block body %}
 <div class="d-flex justify-content-end align-items-center">
   <div class="col-12 text-end p-3">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#genericModal">
-      Launch demo modal
-    </button>
-    <a class="btn btn-primary" href="{% url 'chefs:create' %}">Nuevo Chef</a>
+    <button class="btn btn-primary" onclick="openModal('#modal_chef', '{% url 'chefs:create' %}')">Nuevo Chef</button>
   </div>
 </div>
 {% if chefs %}
@@ -30,12 +26,12 @@
           <td>{{chef.name}}</td>
           <td>{{chef.last_name}}</td>
           <td>
-            <button class="btn" onclick="openFormModal('{% url 'chefs:update' chef.id %}')">
+            <button class="btn" onclick="openModal('#modal_chef', '{% url 'chefs:update' chef.id %}')">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <a  href="{% url 'chefs:delete' chef.id %}">
+            <button class="btn"  onclick="openModal('#modal_chef','{% url 'chefs:delete' chef.id %}')">
               <i class="fa-solid fa-trash-can"></i>
-            </a>
+            </button>
           </td>
         </tr>
         {% endfor %}
@@ -46,35 +42,5 @@
 {% else %}
 <h1>No existen chefs</h1>
 {% endif %}
-<div class="card p-3">
-  <form method="post">
-    {% csrf_token %}
-    <div class="row form-group">
-      <div>
-        <label>{{form.name.label}}</label>
-      </div>
-      <div>{{form.name}}</div>
-    </div>
-    <div class="row form-group">
-      <div>
-        <label>{{form.last_name.label}}</label>
-      </div>
-      <div>{{form.last_name}}</div>
-    </div>
-    <button class="btn btn-primary" type="submit">Crear</button>
-  </form>
-</div>
-<div class="modal fade" id="edit_chef" role="dialog">
-
-</div>
+<div class="modal fade" id="modal_chef" role="dialog"></div>
 {% endblock body %}
-{% block extrajs %}
-<script type="text/javascript">
-  const $ = jQuery.noConflict();
-  function openFormModal(url){
-    $("#edit_chef").load(url, function(){
-      $("#edit_chef").modal("show");
-    });
-  }
-</script>
-{% endblock extrajs %}
