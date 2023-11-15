@@ -1,10 +1,11 @@
 {% extends "index.html" %}
 
+{% block header %}Recetas{% endblock header %}
 {% block title %}Crear receta{% endblock title %}
 {% block body %}
 <div class="d-flex justify-content-end align-items-center">
   <div class="col-12 text-end p-3">
-    <a class="btn btn-primary" href="{% url 'recipes:create' %}">Nueva Receta</a>
+    <button class="btn btn-primary" onclick="openModal('#modal_recipe', '{% url 'recipes:create' %}')">Nueva Receta</button>
   </div>
 </div>
 {% if recipes %}
@@ -28,12 +29,15 @@
           <td>{{recipe.description}}</td>
           <td>{{recipe.chef}}</td>
           <td>
-            <a href="{% url 'recipes:update' recipe.id %}">
+            <button class="btn" onclick="openModal('#modal_recipe', '{% url 'recipes:show' recipe.id %}')">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button class="btn" onclick="openModal('#modal_recipe', '{% url 'recipes:update' recipe.id %}')">
               <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-            <a href="{% url 'recipes:delete' recipe.id %}">
+            </button>
+            <button class="btn" onclick="openModal('#modal_recipe', '{% url 'recipes:delete' recipe.id %}')">
               <i class="fa-solid fa-trash-can"></i>
-            </a>
+            </button>
           </td>
         </tr>
         {% endfor %}
@@ -44,4 +48,5 @@
 {% else %}
 <h1>No existen recetas</h1>
 {% endif %}
+<div class="modal fade" id="modal_recipe" role="dialog"></div>
 {% endblock body %}

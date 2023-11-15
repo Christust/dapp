@@ -1,29 +1,6 @@
-{% extends "index.html" %}
-
-{% block title %}Crear receta{% endblock title %}
-{% block body %}
-<div class="card col-9 p-3">
-  <form method="post">
-    {% csrf_token %}
-    <div class="row form-group">
-      <div>
-        <label>{{form.name.label}}</label>
-      </div>
-      <div>{{form.name}}</div>
-    </div>
-    <div class="row form-group">
-      <div>
-        <label>{{form.description.label}}</label>
-      </div>
-      <div>{{form.description}}</div>
-    </div>
-    <div class="row form-group">
-      <div>
-        <label>{{form.chef.label}}</label>
-      </div>
-      <div>{{form.chef}}</div>
-    </div>
-    <button class="btn btn-primary" type="submit">Crear</button>
-  </form>
-</div>
-{% endblock body %}
+{% extends "shared/generic_modal.html" %}
+{% block modal_title %} Crear Recipe {% endblock modal_title %}
+{% block url_action %}{% url "recipes:create" %}{% endblock url_action %}
+{% block modal_body %}{{form.as_p}}{% endblock modal_body %}
+{% block close_button %}Cancelar{% endblock close_button %}
+{% block submit_button %}Confirmar{% endblock submit_button %}

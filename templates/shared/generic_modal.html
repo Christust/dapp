@@ -19,12 +19,12 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn {% block close_btn_class %}btn-secondary{% endblock close_btn_class %}"
           data-bs-dismiss="modal"
         >
           {% block close_button %}{% endblock close_button %}
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn {% block submit_btn_class %}btn-primary{% endblock submit_btn_class %}">
           {% block submit_button %}{% endblock submit_button %}
         </button>
       </div>

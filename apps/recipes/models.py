@@ -9,6 +9,9 @@ class Recipe(models.Model):
     description = models.TextField(
         "Description", blank=False, null=False
     )
+    instructions = models.TextField(
+        "Instructions", blank=False, null=False
+    )
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE, blank=False, null=False)
 
     class Meta:

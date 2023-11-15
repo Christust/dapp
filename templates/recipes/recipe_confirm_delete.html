@@ -1,17 +1,9 @@
-{% extends "index.html" %}
-{% block title %}Eliminar receta{% endblock title %}
-{% block body %}
-{% if not error %}
-<div class="card col-9 p-3">
-  <form method="post">
-    {% csrf_token %} 
-    <div>
-        <h5>¿Seguro de que desea eliminar esta receta?</h5>
-    </div>
-    <button class="btn btn-danger" type="submit">Eliminar</button>
-  </form>
-</div>
-{% else %}
-<h1>{{ error }}</h1>
-{% endif %}
-{% endblock body %}
+{% extends "shared/generic_modal.html" %}
+{% block modal_title %} Eliminar receta {% endblock modal_title %}
+{% block url_action %}{% url "recipes:delete" object.id %}{% endblock url_action %}
+{% block modal_body %}
+  ¿Esta seguro de querer eliminar esta receta?
+{% endblock modal_body %}
+{% block close_button %}Cancelar{% endblock close_button %}
+{% block submit_btn_class %}btn-danger{% endblock submit_btn_class %}
+{% block submit_button %}Eliminar receta{% endblock submit_button %}

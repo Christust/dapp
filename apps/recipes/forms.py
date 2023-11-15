@@ -9,6 +9,7 @@ class RecipeForm(forms.ModelForm):
         labels = {
             "name": "Nombre de la receta",
             "description": "Descripción",
+            "instructions": "Instrucciones",
             "chef": "Chef de la receta",
         }
         widgets = {
@@ -22,6 +23,12 @@ class RecipeForm(forms.ModelForm):
                 attrs={
                     "class": "form-control mb-3",
                     "placeholder": "Ingrese una descripción",
+                }
+            ),
+            "instructions": forms.Textarea(
+                attrs={
+                    "class": "form-control mb-3",
+                    "placeholder": "Ingrese las instrucciones",
                 }
             ),
             "chef": forms.Select(

@@ -25,6 +25,12 @@ class CreateView(generic.CreateView):
     form_class = RecipeForm
     success_url = reverse_lazy("recipes:index")
 
+class ShowView(generic.UpdateView):
+    template_name = "recipes/show.html"
+    model = Recipe
+    form_class = RecipeForm
+    success_url = reverse_lazy("recipes:index")
+
 
 class DeleteView(generic.DeleteView):
     model = Recipe

@@ -1,0 +1,20 @@
+{% extends "shared/generic_modal.html" %}
+{% block modal_title %} {{object.name}} {% endblock modal_title %}
+{% block modal_body %}
+<div class="row">
+    <div>
+        <label>{{form.description.label}}</label>
+        <p>{{form.description.value}}</p>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <label>{{form.instructions.label}}</label>
+        <p>{{form.instructions.value}}</p>
+    </div>
+</div>
+
+{% endblock modal_body %}
+{% block close_btn_class %}btn-primary{% endblock close_btn_class %}
+{% block submit_btn_class %}d-none{% endblock submit_btn_class %}
+{% block close_button %}Salir{% endblock close_button %}

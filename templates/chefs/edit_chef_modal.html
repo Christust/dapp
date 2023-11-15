@@ -1,6 +1,0 @@
-{% extends "shared/generic_modal.html" %}
-{% block modal_title %} Edit Chef {{object.id}} {% endblock modal_title %}
-{% block url_action %}{% url "chefs:update" object.id %}{% endblock url_action %}
-{% block modal_body %}{{form.as_p}}{% endblock modal_body %}
-{% block close_button %}Cancelar{% endblock close_button %}
-{% block submit_button %}Confirmar{% endblock submit_button %}
