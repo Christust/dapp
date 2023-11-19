@@ -5,7 +5,7 @@ from .models import Chef
 class ChefForm(forms.ModelForm):
     class Meta:
         model = Chef
-        fields = "__all__"
+        fields = ["name", "last_name"]
         labels = {"name": "Nombre del chef", "last_name": "Apellido del chef"}
         widgets = {
             "name": forms.TextInput(

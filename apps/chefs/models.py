@@ -1,9 +1,9 @@
 from django.db import models
+from apps.base.models import Base
 
 
 # Create your models here.
-class Chef(models.Model):
-    id = models.AutoField(primary_key=True)
+class Chef(Base):
     name = models.CharField("Name", max_length=30, blank=False, null=False)
     last_name = models.CharField("Last name", max_length=30, blank=False, null=False)
 
